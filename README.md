@@ -1,3 +1,5 @@
+Forked version of [Responsive Playing Cards](https://github.com/digitaldesignlabs/responsive-playing-cards). Cards have been merged into a [svg-stack](https://github.com/hofmannsven/SVG-Stacking). Joker and back side added as well.
+
 Responsive Playing Cards
 ========================
 
