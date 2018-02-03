@@ -10,7 +10,7 @@ module.exports = function(grunt) {
                     stack: true
                 }
             },
-            your_target: {
+            target: {
                 src			: ['cards/**.svg'],
                 dest		: 'dist',
                 options		: {
@@ -21,17 +21,23 @@ module.exports = function(grunt) {
             }
         },
         replace: {
-            ids: {
-              src: 'dist/stack/svg/sprite.stack.svg',
-              dest: 'dist/cards.svg',
-              replacements: [{
-                from: 'cards--', 
-                to: ''
-              }]
+            normal: {
+                src: 'dist/stack/svg/sprite.stack.svg',
+                dest: 'dist/cards.svg',
+                replacements: [
+                    {
+                        from: 'cards--', 
+                        to: ''
+                    },
+                    {
+                        from: 'min-width:75px',
+                        to: 'min-width:0'
+                    }
+                ]
             }
         },
         clean: ['dist/stack']
     });
     
-    grunt.registerTask('default', ['svg_sprite', 'replace:ids', 'clean']);
+    grunt.registerTask('default', ['svg_sprite', 'replace:normal', 'clean']);
 };
