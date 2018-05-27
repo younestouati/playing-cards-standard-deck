@@ -1,6 +1,6 @@
 {
   "name": "@younestouati/playing-cards-standard-deck",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Svg stack representing standard deck of playing cards",
   "main": "dist/cards.svg",
   "scripts": {
