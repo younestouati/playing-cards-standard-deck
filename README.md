@@ -1,4 +1,7 @@
-Forked version of [Responsive Playing Cards](https://github.com/digitaldesignlabs/responsive-playing-cards). Cards have been merged into a [svg-stack](https://github.com/hofmannsven/SVG-Stacking). Joker and back side added as well.
+Forked version of [Responsive Playing Cards](https://github.com/digitaldesignlabs/responsive-playing-cards). Cards have been base64 encoded and are exported as svg - and responsiveness disabled. Joker added as well.
+
+Base64 encoding makes the the cards larger (in terms of kb), but makes them more suitable for use in Safari, that
+otherwise tends to 'flash' if an element with an svg is (re)mounted in the DOM.
 
 Responsive Playing Cards
 ========================

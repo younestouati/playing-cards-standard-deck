@@ -1,43 +1,32 @@
 module.exports = function(grunt) {
-    grunt.loadNpmTasks('grunt-svg-sprite');
-    grunt.loadNpmTasks('grunt-text-replace');
-    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-svgpackager');
     
     grunt.initConfig({
-        svg_sprite		: {
-            options		: {
-                mode: {
-                    stack: true
+        svgpackager: {
+            playingCardsStandardDeck: {
+                options: {
+                    package: 'cards',
+                    source: 'cards',
+                    dest: 'dist',
+                    output: 'json',
+                    base64: true,
+                    prefixsvg: false, // Don't prefix with data:image/svg+xml;base64,
                 }
             },
-            target: {
-                src			: ['cards/**.svg'],
-                dest		: 'dist',
-                options		: {
-                    mode: {
-                        stack: true
-                    }
-                }
-            }
         },
-        replace: {
-            normal: {
-                src: 'dist/stack/svg/sprite.stack.svg',
-                dest: 'dist/cards.svg',
-                replacements: [
-                    {
-                        from: 'cards--', 
-                        to: ''
-                    },
-                    {
-                        from: 'min-width:75px',
-                        to: 'min-width:0'
-                    }
-                ]
-            }
-        },
-        clean: ['dist/stack']
     });
-    
-    grunt.registerTask('default', ['svg_sprite', 'replace:normal', 'clean']);
+
+    grunt.registerTask('clean-up-json', 'Clean up the json', function() {
+        const json = grunt.file.readJSON('dist/cards.json');
+        const keys = Object.keys(json);
+        const cleanJSON = {};
+
+        for (let key of keys) {
+            cleanJSON[key] = json[key].data;
+        }
+
+        grunt.file.write('dist/cards.json', JSON.stringify(cleanJSON));
+      });
+
+    grunt.registerTask('default', ['svgpackager', 'clean-up-json']);
 };
